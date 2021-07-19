@@ -7,7 +7,6 @@
         <variable
             name="comic"
             type="com.example.marvelboard.Comic"/>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +31,7 @@
 
         <ImageView
             android:id="@+id/comicImage"
+            imageUrl="@{comic.coverImageUrl + `.jpg`}"
             android:layout_width="0dp"
             android:layout_height="279dp"
             android:layout_marginTop="32dp"

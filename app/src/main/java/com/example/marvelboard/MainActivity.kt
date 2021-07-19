@@ -4,19 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.marvelboard.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainActivityViewModel: MainActivityViewModel
-    private val mainActivityPresenter = MainActivityPresenter()
+    private lateinit var binding: ActivityMainBinding
+    private val mainActivityPresenter by lazy { MainActivityPresenter(binding, mainActivityViewModel) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        binding.lifecycleOwner = this
+        binding = ActivityMainBinding.inflate(layoutInflater).apply { lifecycleOwner = this@MainActivity }
         setContentView(binding.root)
-        mainActivityPresenter.present(binding, mainActivityViewModel)
+        mainActivityPresenter.present()
     }
 }
