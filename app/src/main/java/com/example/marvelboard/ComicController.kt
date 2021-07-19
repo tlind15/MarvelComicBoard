@@ -9,7 +9,6 @@ class ComicController(private val comicRepository: ComicRepository) {
 
     private var _comicData: MutableStateFlow<Comic?>? = null
 
-
     suspend fun fetchComic(comicId: String): Flow<Comic> {
        if (_comicData == null) {
            _comicData = MutableStateFlow(comicRepository.fetchComicById(comicId))

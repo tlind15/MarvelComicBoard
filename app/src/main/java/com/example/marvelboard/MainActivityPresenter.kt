@@ -14,7 +14,7 @@ class MainActivityPresenter(private val binding: ActivityMainBinding,
 
     fun present() {
         binding.lifecycleOwner?.lifecycleScope?.launchWhenStarted {
-            viewModel.comicController.fetchComic("1234").collect {
+            viewModel.comicController.fetchComic("333").collect {
                 withContext(Dispatchers.Main) {
                     binding.comic = it
                 }
@@ -25,6 +25,8 @@ class MainActivityPresenter(private val binding: ActivityMainBinding,
 }
 
 @BindingAdapter("imageUrl")
-fun fetchImage(view: ImageView, url: String) {
-    Glide.with(view).load(url).into(view)
+fun fetchImage(view: ImageView, url: String?) {
+    url?.let {
+        Glide.with(view).load(url).into(view)
+    }
 }

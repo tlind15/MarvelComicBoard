@@ -5,6 +5,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def keyPropertiesFile = rootProject.file("keys.properties")
+def keyProperties = new Properties()
+keyProperties.load(new FileInputStream(keyPropertiesFile))
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -22,6 +26,9 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
+
+        buildConfigField("String", "PUBLIC_KEY", keyProperties['PUBLIC_KEY'])
+        buildConfigField("String", "PRIVATE_KEY", keyProperties['PRIVATE_KEY'])
     }
 
     buildTypes {
@@ -60,4 +67,6 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.35"
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
 }
