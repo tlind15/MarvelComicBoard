@@ -1,4 +1,4 @@
-package com.example.marvelboard
+package com.example.marvelboard.unit
 
 import org.junit.Test
 

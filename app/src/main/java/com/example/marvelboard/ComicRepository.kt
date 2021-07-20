@@ -25,7 +25,9 @@ class ComicRepository @Inject constructor(private val comicApi: ComicApi, privat
         val apiCall: Call<ResponseBody> = comicApi.fetchComicById(comicId, time,
             marvelKeyHandler.publicKey, createHash(time))
         val response: Response<ResponseBody> = marvelRestHandler.makeRequest(apiCall)
-        return createComic(response.body())
+        return if (response.isSuccessful) {
+            createComic(response.body())
+        } else { null }
     }
 
     private fun createComic(responseBody: ResponseBody?): Comic? {
