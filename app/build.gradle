@@ -20,7 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.marvelboard.TestRunnerWithHilt"
 
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,6 +47,9 @@ android {
     buildFeatures {
         dataBinding true
     }
+    hilt {
+        enableTransformForLocalTests = true
+    }
 }
 
 dependencies {
@@ -59,15 +62,21 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation('androidx.test:runner:1.1.0')
+    androidTestImplementation('androidx.test:rules:1.1.0')
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
     kapt "androidx.lifecycle:lifecycle-compiler:2.3.1"
     implementation "com.google.dagger:hilt-android:2.35"
     kapt "com.google.dagger:hilt-android-compiler:2.35"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:2.35"
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:2.35"
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.7'
     testImplementation "io.mockk:mockk:1.12.0"
+    androidTestImplementation "io.mockk:mockk-android:1.12.0"
+    implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-native:1.0.15'
 }

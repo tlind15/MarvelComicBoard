@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class MainActivityPresenter @Inject constructor() {
+open class MainActivityPresenter @Inject constructor() {
 
-    fun present(binding: ActivityMainBinding, viewModel: MainActivityViewModel) {
+    open fun present(binding: ActivityMainBinding, viewModel: MainActivityViewModel) {
         binding.lifecycleOwner?.lifecycleScope?.launchWhenStarted {
             viewModel.comicController.fetchComic("333").catch {
                 it.printStackTrace()
