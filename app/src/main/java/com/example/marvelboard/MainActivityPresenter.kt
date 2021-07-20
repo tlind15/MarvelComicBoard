@@ -8,17 +8,16 @@ import com.example.marvelboard.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MainActivityPresenter(private val binding: ActivityMainBinding,
-                            private val viewModel: MainActivityViewModel) {
+class MainActivityPresenter @Inject constructor() {
 
-    fun present() {
+    fun present(binding: ActivityMainBinding, viewModel: MainActivityViewModel) {
         binding.lifecycleOwner?.lifecycleScope?.launchWhenStarted {
             viewModel.comicController.fetchComic("333").collect {
                 withContext(Dispatchers.Main) {
                     binding.comic = it
                 }
-
             }
         }
     }
@@ -26,7 +25,5 @@ class MainActivityPresenter(private val binding: ActivityMainBinding,
 
 @BindingAdapter("imageUrl")
 fun fetchImage(view: ImageView, url: String?) {
-    url?.let {
-        Glide.with(view).load(url).into(view)
-    }
+    url?.let { Glide.with(view).load(url).into(view) }
 }

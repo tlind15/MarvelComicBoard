@@ -1,6 +1,8 @@
 package com.example.marvelboard.utils
 
-class Clock {
+import javax.inject.Inject
+
+class Clock @Inject constructor() {
 
     fun millis() = System.currentTimeMillis()
 }

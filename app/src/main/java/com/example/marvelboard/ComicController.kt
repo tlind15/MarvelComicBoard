@@ -4,8 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import javax.inject.Inject
 
-class ComicController(private val comicRepository: ComicRepository) {
+class ComicController @Inject constructor(private val comicRepository: ComicRepository) {
 
     private var _comicData: MutableStateFlow<Comic?>? = null
 
