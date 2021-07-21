@@ -1,6 +1,7 @@
 package com.example.marvelboard
 
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -17,7 +18,7 @@ class MainActivityPresenter @Inject constructor() {
         binding.lifecycleOwner?.lifecycleScope?.launchWhenStarted {
             viewModel.comicController.fetchComic("333").catch {
                 it.printStackTrace()
-                // could trigger UI events here when an exception occurs
+                Toast.makeText(binding.root.context, "Error fetching comic. Try again later!", Toast.LENGTH_LONG).show()
             }.collect {
                 withContext(Dispatchers.Main) {
                     binding.comic = it

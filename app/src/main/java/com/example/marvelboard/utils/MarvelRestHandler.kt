@@ -18,7 +18,6 @@ class MarvelRestHandler @Inject constructor() {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     it.resume(response)
                 }
-
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     it.resumeWithException(t)
                 }

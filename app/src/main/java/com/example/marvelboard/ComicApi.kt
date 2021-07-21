@@ -9,6 +9,8 @@ import retrofit2.http.Query
 interface ComicApi {
 
     @GET("comics/{comicId}")
-    fun fetchComicById(@Path("comicId") comicId: String, @Query("ts") timestamp: Long,
-    @Query("apikey") publicKey: String, @Query("hash") hash: String): Call<ResponseBody>
+    fun fetchComicById(@Path("comicId") comicId: String,
+                       @Query("ts") timestamp: Long,
+                       @Query("apikey") publicKey: String,
+                       @Query("hash") hash: String): Call<ResponseBody>
 }

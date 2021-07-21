@@ -34,7 +34,7 @@ class ComicRepository @Inject constructor(private val comicApi: ComicApi, privat
         return responseBody?.string()?.let {
             val resultsJsonArray: JsonArray = JsonParser.parseString(it).asJsonObject["data"].asJsonObject["results"].asJsonArray
             if (resultsJsonArray.size() > 0) {
-                val dataJson = resultsJsonArray.get(0).asJsonObject
+                val dataJson = resultsJsonArray[0].asJsonObject
                 val title = dataJson["title"].asString
                 val description = dataJson["description"].asString
                 val coverImagePath = dataJson["thumbnail"].asJsonObject["path"].asString
